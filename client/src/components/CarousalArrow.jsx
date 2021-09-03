@@ -21,4 +21,19 @@ export function NextArrow(props) {
       />
     );
   }
+
+
+
+//   export const NextArrow1 = (props) =>{
+
+//     return(
+// <div
+//  className = {props.className}  style ={{...props.style,background: "#e23744"}}  onClick={props.onClick}>
+
+// </div>
+
+//     );
+
+
+//   }
   
