@@ -9,7 +9,7 @@ const PictureCarousalCard = () => {
 
         <div className="w-full h-64 relative  px-4 overflow-hidden ">
             <div className="w-full h-full relative ">
-        <img src="https://b.zmtcdn.com/data/pictures/chains/1/18745841/e28ac5ba67ed7cad5250db302dfa1db2.jpg"
+        <img src="https://b.zmtcdn.com/data/pictures/2/18503752/a1cd82498e16a143ecda57f57cb353b3.jpg?output-format=webp"
          alt="food"
          className="w-full h-full  object-cover transition-duration-700 ease-in-out rounded-lg"  />
             
