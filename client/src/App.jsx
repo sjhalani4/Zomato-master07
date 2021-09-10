@@ -26,6 +26,17 @@ function App() {
   {/* <HomeLayoutHOC path="/" exact component = {Temp}/> */}
   <HomeLayoutHOC path="/:type" exact component = {Home}/>
   <RestaurantLayoutHOC path="/restaurant/:id" exact component = {Temp}/>
+  <RestaurantLayoutHOC path="/restaurant/:id/overview" exact component = {Temp}/>
+  <RestaurantLayoutHOC path="/restaurant/:id/order-online" exact component = {Temp}/>
+  <RestaurantLayoutHOC path="/restaurant/:id/menu" exact component = {Temp}/>
+  <RestaurantLayoutHOC path="/restaurant/:id/reviews" exact component = {Temp}/>
+  <RestaurantLayoutHOC path="/restaurant/:id/menu" exact component = {Temp}/>
+  <RestaurantLayoutHOC path="/restaurant/:id/photos" exact component = {Temp}/>
+
+
+
+
+
 
   </>
   );
