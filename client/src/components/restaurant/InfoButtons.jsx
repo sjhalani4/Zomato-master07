@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React from 'react'
-import { TiStarOutline } from 'react-icons/ti';
+// import { TiStarOutline } from 'react-icons/ti';
 
 
 const InfoButtons = (props) => {
