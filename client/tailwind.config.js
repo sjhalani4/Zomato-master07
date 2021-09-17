@@ -5,7 +5,9 @@ module.exports = {
     extend: {
       colors: {
       zomato:{
+        100: "#fabac0",
         400: "#e23744",
+        50:"#f8eff0",
 
       },
     },

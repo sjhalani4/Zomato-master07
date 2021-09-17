@@ -1,5 +1,7 @@
 import React from 'react'
 import { IoMdArrowDropright } from 'react-icons/io';
+import { MdContentCopy } from 'react-icons/md';
+import { FaDirections } from 'react-icons/fa';
 import { Link, useParams } from 'react-router-dom';
 import Slider from 'react-slick';
 import { NextArrow, PrevArrow } from '../../components/CarousalArrow';
@@ -14,21 +16,47 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import MenuCollection from '../../components/restaurant/MenuCollection';
 import MenuSimilarRestaurantCard from './MenuSimilarRestaurantCard';
 import ReviewCard from './Reviews/ReviewCard';
+import Mapview from './Reviews/Mapview';
 
 
 const Overview = () => {
     const {id}= useParams();
     const settings = {
-        breakpoint:1024,
-        arrows:true,
-        dots: false,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        nextArrow: <NextArrow/>,
-        prevArrow:<PrevArrow/>
-      };
+      arrows:true,
+      dots: false,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      nextArrow: <NextArrow/>,
+      prevArrow:<PrevArrow/>,
+      responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 3,
+              infinite: true,
+              dots: true
+            }
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2,
+              initialSlide: 2
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
+        ]
+  };
       const ratingChanged = (newRating) => {
         console.log(newRating);
       };
@@ -81,6 +109,10 @@ const Overview = () => {
                           activeColor="#ffd700"
                         />
                           </div>
+                          <div className="my-4 md:hidden flex flex-col gap-4 w-full"> 
+                          <Mapview phno="+918770233852" title="Sahil Jhalani 5 star Hotel" mapLocation={[27.8012, 76.6442]} address="Jhalani mohalla ward no. 5, Khairthal"/>
+
+                           </div>
                           <div className="my-4 flex flex-col gap-4">
                              <ReviewCard/>
                              <ReviewCard/>
@@ -92,34 +124,15 @@ const Overview = () => {
               
                 <aside
                 style={{height:"fit-content"}}
-                className="hidden md:block md:w-4/12 sticky top-2 bg-white p-3 shadow-md rounded-xl">
-                  <div className="my-4">
-                  <h4 className="text-xl font-medium  ">Call</h4>
-                  <h5 className="text-zomato-400 font-medium">+918770233852</h5>
-                  </div>
-                  <div>
-                  <h4 className="text-xl font-medium  ">Direction</h4>
-                 <div className="w-full h-48">
-                 <MapContainer   center={[27.8012, 76.6442]} zoom={13} scrollWheelZoom={false}>
-                      <TileLayer
-                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                      />
-                      <Marker position={[27.80, 76.64]}>
-                        <Popup>
-                          A pretty CSS3 popup. <br /> Easily customizable.
-                        </Popup>
-                      </Marker>
-                    </MapContainer>
-
-                 </div>
-                 
+                className="hidden md:flex md:w-4/12 sticky top-2 bg-white p-3 shadow-md rounded-xl flex-col gap-4">
                   
-                    
+                 <Mapview phno="+918770233852" title="Sahil Jhalani 5 star Hotel" mapLocation={[27.8012, 76.6442]} address="Jhalani mohalla ward no. 5, Khairthal"/>
+                 </aside> 
                           
 
-                  </div>
-                  </aside>              
+                  
+                  
+                               
               </div>  
         </>
     );
