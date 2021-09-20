@@ -1,7 +1,8 @@
 import React from 'react'
 import {Route} from 'react-router-dom';
 //Layout
-import HomeLayout from '../Layout/Home.layout';
+import HomeLayout from '../components/restaurant/Layout/Home.layout';
+
 
 
 

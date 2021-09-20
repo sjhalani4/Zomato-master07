@@ -14,9 +14,12 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 
 //components
 import MenuCollection from '../../components/restaurant/MenuCollection';
-import MenuSimilarRestaurantCard from './MenuSimilarRestaurantCard';
-import ReviewCard from './Reviews/ReviewCard';
-import Mapview from './Reviews/Mapview';
+import MenuSimilarRestaurantCard from '../../components/restaurant/MenuSimilarRestaurantCard';
+import ReviewCard from '../../components/restaurant/Reviews/ReviewCard';
+import Mapview from '../../components/restaurant/Reviews/Mapview';
+
+
+
 
 
 const Overview = () => {

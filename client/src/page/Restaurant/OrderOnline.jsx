@@ -4,7 +4,7 @@ import {AiOutlineCompass} from 'react-icons/ai'
 import {BiTimeFive} from 'react-icons/bi'
 //components
 import FloatMenuBtn from '../../components/restaurant/Order-Online/FloatMenuBtn';
-import FoodItem from '../../components/restaurant/Order-Online/FoodItem';
+
 import FoodList from '../../components/restaurant/Order-Online/FoodList';
 import MenuListContainer from '../../components/restaurant/Order-Online/MenuListContainer'
 
@@ -38,76 +38,7 @@ const OrderOnline = () => {
                     description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum veniam sed, maxime magnam eius maiores eaque optio excepturi consequatur assumenda id veritatis cumque, voluptas quisquam fugit ratione, alias corporis laudantium"
 
                     },
-                    {
-
-                        image:"https://b.zmtcdn.com/data/dish_photos/a21/89037ae7a72e341bec0aa6519f901a21.jpg?output-format=webp",
-                        price:"1000",
-                        title:"Tawa Roti" ,
-                        rating:"3" ,
-                        description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum veniam sed, maxime magnam eius maiores eaque optio excepturi consequatur assumenda id veritatis cumque, voluptas quisquam fugit ratione, alias corporis laudantium"
-    
-                        },
-                        {
-
-                            image:"https://b.zmtcdn.com/data/dish_photos/a21/89037ae7a72e341bec0aa6519f901a21.jpg?output-format=webp",
-                            price:"1000",
-                            title:"Tawa Roti" ,
-                            rating:"3" ,
-                            description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum veniam sed, maxime magnam eius maiores eaque optio excepturi consequatur assumenda id veritatis cumque, voluptas quisquam fugit ratione, alias corporis laudantium"
-        
-                            },
-                            {
-
-                                image:"https://b.zmtcdn.com/data/dish_photos/a21/89037ae7a72e341bec0aa6519f901a21.jpg?output-format=webp",
-                                price:"1000",
-                                title:"Tawa Roti" ,
-                                rating:"3" ,
-                                description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum veniam sed, maxime magnam eius maiores eaque optio excepturi consequatur assumenda id veritatis cumque, voluptas quisquam fugit ratione, alias corporis laudantium"
-            
-                                }
-
-
-                ]} />
-                <FoodList title="Sahil Jhalani" items={[
-                    {
-
-                        image:"https://b.zmtcdn.com/data/dish_photos/a21/89037ae7a72e341bec0aa6519f901a21.jpg?output-format=webp",
-                        price:"1000",
-                        title:"Tawa Roti" ,
-                        rating:"3" ,
-                        description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum veniam sed, maxime magnam eius maiores eaque optio excepturi consequatur assumenda id veritatis cumque, voluptas quisquam fugit ratione, alias corporis laudantium"
-    
-                        },
-                        {
-    
-                            image:"https://b.zmtcdn.com/data/dish_photos/a21/89037ae7a72e341bec0aa6519f901a21.jpg?output-format=webp",
-                            price:"1000",
-                            title:"Tawa Roti" ,
-                            rating:"3" ,
-                            description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum veniam sed, maxime magnam eius maiores eaque optio excepturi consequatur assumenda id veritatis cumque, voluptas quisquam fugit ratione, alias corporis laudantium"
-        
-                            },
-                            {
-    
-                                image:"https://b.zmtcdn.com/data/dish_photos/a21/89037ae7a72e341bec0aa6519f901a21.jpg?output-format=webp",
-                                price:"1000",
-                                title:"Tawa Roti" ,
-                                rating:"3" ,
-                                description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum veniam sed, maxime magnam eius maiores eaque optio excepturi consequatur assumenda id veritatis cumque, voluptas quisquam fugit ratione, alias corporis laudantium"
-            
-                                },
-                                {
-    
-                                    image:"https://b.zmtcdn.com/data/dish_photos/a21/89037ae7a72e341bec0aa6519f901a21.jpg?output-format=webp",
-                                    price:"1000",
-                                    title:"Tawa Roti" ,
-                                    rating:"3" ,
-                                    description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum veniam sed, maxime magnam eius maiores eaque optio excepturi consequatur assumenda id veritatis cumque, voluptas quisquam fugit ratione, alias corporis laudantium"
-                
-                                    }
-
-
-                ]} />
+                   ]} />
                 
                    
             </section>
