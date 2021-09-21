@@ -2,6 +2,7 @@ import React from 'react'
 import { BiBookmarkPlus } from 'react-icons/bi';
 import { RiDirectionLine,RiShareForwardLine } from 'react-icons/ri';
 import { TiStarOutline } from 'react-icons/ti';
+import CartContainer from '../../Cart/CartContainer';
 
 
 
@@ -55,6 +56,7 @@ const RestaurantLayout = (props) => {
                  </div>
                  {props.children}
         </div>
+        <CartContainer/>
         </>
     );
 };
