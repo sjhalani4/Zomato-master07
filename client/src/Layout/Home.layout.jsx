@@ -1,6 +1,6 @@
 import React from 'react'
-import Navbar from '../../Navbar';
-import FoodTab from '../../FoodTab';
+import Navbar from '../components/Navbar';
+import FoodTab from '../components/FoodTab';
 //Components
 
 

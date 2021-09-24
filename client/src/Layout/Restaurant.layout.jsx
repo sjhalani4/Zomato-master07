@@ -2,7 +2,7 @@ import React from 'react'
 import { BiBookmarkPlus } from 'react-icons/bi';
 import { RiDirectionLine,RiShareForwardLine } from 'react-icons/ri';
 import { TiStarOutline } from 'react-icons/ti';
-import CartContainer from '../../Cart/CartContainer';
+import CartContainer from '../components/Cart/CartContainer';
 
 
 
@@ -10,11 +10,11 @@ import CartContainer from '../../Cart/CartContainer';
 
 
 //components
-import RestaurantNavbar from '../../Navbar/RestaurantNavbar';
-import ImageGrid from '../ImageGrid';
-import InfoButtons from '../InfoButtons';
-import RestaurantInfo from '../RestaurantInfo';
-import TabContainer from '../Tabs';
+import RestaurantNavbar from '../components/Navbar/RestaurantNavbar';
+import ImageGrid from '../components/restaurant/ImageGrid';
+import InfoButtons from '../components/restaurant/InfoButtons';
+import RestaurantInfo from '../components/restaurant/RestaurantInfo';
+import TabContainer from '../components/restaurant/Tabs';
 
 
 
