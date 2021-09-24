@@ -6,8 +6,9 @@ import {Route, Redirect} from 'react-router-dom';
 import HomeLayoutHOC from "./HOC/Home.Hoc";
 import RestaurantLayoutHOC from './HOC/Restaurant.HOC';
 //components
-import Temp from "./components/temp";
+// import Temp from "./components/temp";
 import Overview from './page/Restaurant/Overview';
+import RedirectRestaurant from './page/Restaurant/Redirect';
 
 //page 
 import Home from './page/Home'
@@ -31,9 +32,9 @@ function App() {
     <Redirect to ='/delivery'/>
 
   </Route>
-          <Route path="/restaurant/:id" exact>
-            <Redirect to = '/restaurant/:id/overview'/>
-          </Route>
+          <Route path="/restaurant/:id" exact component={RedirectRestaurant}/>
+            {/* <Redirect to = '/restaurant/:id/overview'/> because id is here checked as a text 
+          </Route> */}
   
   {/* <HomeLayoutHOC path="/" exact component = {Temp}/> */}
   <HomeLayoutHOC path="/:type" exact component = {Home}/>

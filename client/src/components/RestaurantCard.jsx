@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import { useDispatch } from 'react-redux';
 import {AiTwotoneStar} from 'react-icons/ai'
 import { getImage } from '../Redux/Image/Image.action';
+import { Link } from 'react-router-dom';
 
 
 const RestaurantCard = (props) => {
@@ -14,7 +15,7 @@ const RestaurantCard = (props) => {
 
     },[props.photos]);
     return (
-        <>
+        <Link to={`/restaurant/${props._id}`} className="w-full">
         <div className="bg-white p-4 w-full mb-4 transition-duration-700 ease-in-out  hover:shadow-md  md:w-1/2 lg:w-1/3 rounded-2xl relative">
             <div className="w-full h-56 lg:h-64 relative">
               <div className="absolute w-full flex bottom-4 items-end justify-between">
@@ -52,7 +53,7 @@ const RestaurantCard = (props) => {
 
     </div>
             
-        </>
+        </Link>
     );
 }
 
