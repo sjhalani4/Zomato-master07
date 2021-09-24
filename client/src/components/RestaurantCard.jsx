@@ -1,7 +1,18 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
+import { useDispatch } from 'react-redux';
 import {AiTwotoneStar} from 'react-icons/ai'
+import { getImage } from '../Redux/Image/Image.action';
+
 
 const RestaurantCard = (props) => {
+    const [image, setImage]=useState({
+        images : [],
+    });
+    const dispatch = useDispatch();
+    useEffect(()=>{
+        props.photos && dispatch(getImage(props.photos)).then((data)=>setImage(data.payload.image));
+
+    },[props.photos]);
     return (
         <>
         <div className="bg-white p-4 w-full mb-4 transition-duration-700 ease-in-out  hover:shadow-md  md:w-1/2 lg:w-1/3 rounded-2xl relative">
@@ -19,8 +30,8 @@ const RestaurantCard = (props) => {
                 <span className="bg-white bg-opacity-75 p-1 rounded mr-2">{props.durationOfdelivery} min</span>
             </div>
 
-            {/* "https://b.zmtcdn.com/data/pictures/chains/0/18879350/1278946d4640b74d14344dfb8b95a3f2_o2_featured_v2.jpg?output-format=webp" */}
-                <img src={props.photos.length && props.photos[0]}
+                {/* <img src={props.photos.length && props.photos[0]} */}
+                <img src={image.images.length&&image.images[0].location}
                  alt="food"
                  className="w-full h-full rounded-2xl"
                  />
