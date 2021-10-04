@@ -4,6 +4,7 @@ import { UserModel } from "../database/allModels";
 
 const GoogleStrategy = googleOAuth.Strategy;
 
+
 export default (passport) => {
   passport.use(
     new GoogleStrategy(

@@ -46,14 +46,14 @@ Router.post("/", upload.single("file"), async(req, res) => {
     try {
         const file = req.file;
 
-        //s3 bucket options
-        //  const bucketOptions = {
-        //     Bucket: "zomatoprojectaashita",
-        //     Key:file.originalname,
-        //     Body:file.buffer,
-        //     ContentType: file.mimetype,
-        //     ACL:"public-read", //access control list
-        // };
+       // s3 bucket options
+         const bucketOptions = {
+            Bucket: "zomatoprojectaashita",
+            Key:file.originalname,
+            Body:file.buffer,
+            ContentType: file.mimetype,
+            ACL:"public-read", //access control list
+        };
 
 
          const uploadImage = await s3Upload(bucketOptions);

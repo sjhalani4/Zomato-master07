@@ -1,7 +1,8 @@
 import React,{useState,useEffect} from 'react'
 import { useDispatch } from 'react-redux';
 import {AiTwotoneStar} from 'react-icons/ai'
-import { getImage } from '../Redux/Image/Image.action';
+//import { getImage } from '../Redux/Image/Image.action';
+import {getImage} from '../Redux/Reducer/Image/Image.action'
 import { Link } from 'react-router-dom';
 
 

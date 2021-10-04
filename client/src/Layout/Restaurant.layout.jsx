@@ -1,4 +1,6 @@
-import React from 'react'
+import React, {useState,useEffect} from 'react'
+import { useParams } from 'react-router-dom'; 
+import {useDispatch} from 'react-redux';
 import { BiBookmarkPlus } from 'react-icons/bi';
 import { RiDirectionLine,RiShareForwardLine } from 'react-icons/ri';
 import { TiStarOutline } from 'react-icons/ti';
@@ -17,25 +19,45 @@ import RestaurantInfo from '../components/restaurant/RestaurantInfo';
 import TabContainer from '../components/restaurant/Tabs';
 
 
+//redux action
+import { getSpecificRestaurant } from '../Redux/Reducer/restaurant/restaurant.action';
+import { getImage } from '../Redux/Reducer/Image/Image.action';
+
+
 
 
 const RestaurantLayout = (props) => {
+    const [restaurant, setRestaurant] = useState({
+        images:[],
+        name:"",
+        cuisine:"",
+        address:""
+    });
+    const {id} = useParams();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getSpecificRestaurant(id)).then((data)=>{ 
+            setRestaurant((prev)=>
+            ({...prev,
+                ...data.payload.restaurant,
+            }));
+            dispatch(getImage(data.payload.restaurant.photos)).then(data => setRestaurant((prev)=>({...prev,...data.payload.image })))
+        });
+        
+    }, []);
     return (
         <>
          <RestaurantNavbar/>
          <div className="container   mx-auto px-4 lg:px-20"> 
-         <ImageGrid images={[
-            "https://b.zmtcdn.com/data/pictures/2/18825622/604972116cb970d5cebc2360076e610b.jpg",
-            "https://b.zmtcdn.com/data/pictures/2/18825622/604972116cb970d5cebc2360076e610b.jpg",
-            "https://b.zmtcdn.com/data/pictures/2/18825622/604972116cb970d5cebc2360076e610b.jpg" ,
-            "https://b.zmtcdn.com/data/pictures/2/18825622/604972116cb970d5cebc2360076e610b.jpg",
-            "https://b.zmtcdn.com/data/pictures/2/18825622/604972116cb970d5cebc2360076e610b.jpg"
-         ]}/>
-            <RestaurantInfo name="Popular Fresh Momos 'N' More"
-             restaurantRating="3.7"
-             deliveryRating = "3.8"
-             cuisine="Chinese, Fast Food, Momos, Burger, Beverages"
-             address="Civil Lines, Jabalpur"
+         <ImageGrid 
+         images={restaurant.images}
+         />
+            <RestaurantInfo name={restaurant?.name}
+             restaurantRating={restaurant?.rating || 0}
+             deliveryRating = {restaurant?.rating ||0}
+             cuisine={restaurant?.cuisine}
+             address={restaurant?.address}
              />
              <div className="my-4 flex flex-wrap gap-3">
                  <InfoButtons isActive>
