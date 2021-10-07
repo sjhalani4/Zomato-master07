@@ -1,7 +1,18 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import { TiStarFullOutline } from 'react-icons/ti';
+import { useDispatch } from 'react-redux';
+import { getUser } from '../../../Redux/Reducer/User/user.action';
+import dayjs from "dayjs";
 
-const ReviewCard = () => {
+const ReviewCard = (props) => {
+    const [user, setUser] = useState({});
+    const dispatch = useDispatch();
+    useEffect(() => {
+       dispatch(getUser(props.user)).then((data)=>
+        // setUser(data.payload.user.user.user)
+      console.log(data)
+       );
+        }, []);
     return (
         <>
          <div className="flex flex-col gap-3">
@@ -13,7 +24,7 @@ const ReviewCard = () => {
                   className="w-full h-full rounded-full object-cover"/>   
                 </div>
                      <div className="flex flex-col">
-                    <h3 className="text-lg font-semibold">Kunal Thakre</h3>
+                    <h3 className="text-lg font-semibold">{user?.fullname}</h3>
                     <small className="text-gray-500 "> 3 reviews &bull; 0 Followers</small>
                     </div>
                      
@@ -30,15 +41,12 @@ const ReviewCard = () => {
                 <span className="text-white text-xs bg-green-700 px-2 py-1 rounded-lg flex items-center gap-1 ">
                     3 <TiStarFullOutline />
                 </span>
-                <h5 className="font-regular uppercase ">Delivery</h5>
-                <small className="text-gray-500 ">3 days ago</small>
+                <h5 className="font-regular uppercase ">{props.isRestaurantReview?"Dining":"Delivery"}</h5>
+                <small className="text-gray-500 ">{dayjs(props.createdAt).format("DD MMM YYYY")}</small>
             </div>
             <div className="w-full ">
                 <p className="w-full text-gray-600 font-light text-base">
-                cabbage is more thn chicken.
-                bad experience.
-                waste of money.
-                
+                {props.reviewText}
                 </p>
             </div>
         </div>

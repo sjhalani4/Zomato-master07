@@ -1,5 +1,5 @@
-import React from 'react'
-
+import React,{useState,useEffect} from 'react'
+import {useSelector ,useDispatch} from 'react-redux';
 import {AiOutlineCompass} from 'react-icons/ai'
 import {BiTimeFive} from 'react-icons/bi'
 //components
@@ -8,16 +8,36 @@ import FloatMenuBtn from '../../components/restaurant/Order-Online/FloatMenuBtn'
 import FoodList from '../../components/restaurant/Order-Online/FoodList';
 import MenuListContainer from '../../components/restaurant/Order-Online/MenuListContainer'
 
-
+//redux actions
+import {getFoodList} from "../../Redux/Reducer/Food/Food.action";
 
 const OrderOnline = () => {
+    const [menu, setMenu]= useState([]);
+    const [selected,setSelected]=useState("");
+    const onClickHandler=(e)=>{
+        if(e.target.id){
+            setSelected(e.target.id);
+        }
+        return;
+    };
+
+    const reduxState = useSelector((globalStore)=> globalStore.restaurant.selectedRestaurant.restaurant);
+    const dispatch = useDispatch();
+    useEffect(()=>{
+      reduxState &&  dispatch(getFoodList(reduxState.menu)).then((data)=> setMenu(data.payload.menus.menus))
+    },[reduxState]);
+  
     return (
-        <>
+        <>  
            <div className="w-full flex h-screen ">
            <aside className="hidden md:flex flex-col gap-3 overflow-y-scroll border-r border-gray-200 h-screen w-1/4 ">
-           <MenuListContainer/> 
-           <MenuListContainer/>
-           <MenuListContainer/>
+           {
+                menu.map(item=>(
+                            <MenuListContainer {...item} key={item.id} 
+                            onClickHandler={onClickHandler}
+                            selected={selected}
+                            />
+                ))}
            </aside>
 
             <div className="w-full px-3 md:w-3/4 ">
@@ -28,17 +48,7 @@ const OrderOnline = () => {
             </h4>
             </div>
             <section className="flex flex-col gap-3 h-screen overflow-y-scroll md:gap-6">
-                <FoodList title="Recommended" items={[
-                    {
-
-                    image:"https://b.zmtcdn.com/data/dish_photos/a21/89037ae7a72e341bec0aa6519f901a21.jpg?output-format=webp",
-                    price:"1000",
-                    title:"Tawa Roti" ,
-                    rating:"3" ,
-                    description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum veniam sed, maxime magnam eius maiores eaque optio excepturi consequatur assumenda id veritatis cumque, voluptas quisquam fugit ratione, alias corporis laudantium"
-
-                    },
-                   ]} />
+               {menu.map((item)=>(<FoodList key={item._id} {...item} /> ))} 
                 
                    
             </section>

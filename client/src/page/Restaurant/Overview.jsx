@@ -12,11 +12,14 @@ import ReviewCard from '../../components/restaurant/Reviews/ReviewCard';
 import Mapview from '../../components/restaurant/Reviews/Mapview';
 
 import { getImage } from '../../Redux/Reducer/Image/Image.action';
+import { getReviews} from '../../Redux/Reducer/Reviews/reviews.action';
+//import { getReviews } from '../../Redux/Reducer/b/s/a/review.action';
 
 
 
 const Overview = () => {
-  const [menuImages,setMenuImages] = useState({ images:[] })
+  const [menuImage,setMenuImages] = useState({ images:[] })
+  const [Reviews,setReviews] = useState([]);
     const {id}= useParams();
     const settings = {
       arrows:true,
@@ -65,6 +68,7 @@ const Overview = () => {
         data.payload.image.images.map(({location} )=>images.push(location));
         setMenuImages(images);
       });
+      dispatch(getReviews(reduxState?._id)).then((data)=> setReviews(data.payload.reviews))
      }
       }, []);
 
@@ -121,6 +125,8 @@ const Overview = () => {
                           size={24}
                           activeColor="#ffd700"
                         />
+                        {Reviews.map((reviewData)=>
+                        <ReviewCard {...reviewData}/>)}
                           </div>
                           <div className="my-4 md:hidden flex flex-col gap-4 w-full"> 
                           <Mapview phno={`+91${reduxState.contactNumber}`}
@@ -139,7 +145,7 @@ const Overview = () => {
                       
 
               
-                <aside
+                <aside 
                 style={{height:"fit-content"}}
                 className="hidden md:flex md:w-4/12 sticky top-2 bg-white p-3 shadow-md rounded-xl flex-col gap-4">
                   
