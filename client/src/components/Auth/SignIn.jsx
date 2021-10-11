@@ -1,13 +1,26 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { Fragment} from 'react'
+import { Fragment, useState} from 'react'
 import {FcGoogle} from 'react-icons/fc'
+import { useDispatch } from 'react-redux';
+import { signIn } from '../../Redux/Reducer/Auth/Auth.action';
+
+
 
 export default function SignIn({isOpen,setIsOpen}) {
-  
+  const [userData,setUserData]=useState({
+    email:"",
+    password:""
+  });
+
+        const dispatch = useDispatch();
+
+  const handleChange =(e)=> setUserData(prev=>({...prev,[e.target.name]:e.target.value}));
 
   function closeModal() {
     setIsOpen(false)
   }
+
+  const submit = ()=>dispatch(signIn(userData));
 
   
   return (
@@ -64,20 +77,26 @@ export default function SignIn({isOpen,setIsOpen}) {
                     <div className="w-full flex flex-col gap-2">
                         <label htmlFor="email">Email</label>
                         <input type="text"
+                         id="email"
+                        name="email"
+                        onChange={handleChange}
+                        value={userData.email}
                          placeholder="email@email.com"
-                          id="email"
-                          className="w-full border border-gray-400 px-3 py-2 rounded-lg focus:outline-none focus:border-zomato-400" 
+                         className="w-full border border-gray-400 px-3 py-2 rounded-lg focus:outline-none focus:border-zomato-400" 
                           />
                     </div>
                     <div className="w-full flex flex-col gap-2">
                         <label htmlFor="password">Password</label>
                         <input type="password"
                          placeholder="*****"
+                         name="password"
+                         onChange={handleChange}
+                         value = {userData.password}
                           id="password"
                           className="w-full border border-gray-400 px-3 py-2 rounded-lg focus:outline-none focus:border-zomato-400" 
                           />
                     </div>
-                    <div className="w-full bg-zomato-400 text-center text-white py-2 rounded-lg ">
+                    <div onClick={submit} className="w-full bg-zomato-400 text-center text-white py-2 rounded-lg ">
                         sign In
                     </div>
 

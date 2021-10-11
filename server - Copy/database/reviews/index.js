@@ -16,6 +16,8 @@ User:{
 },
     rating: {type: Number, required: true},
     reviewSubject:{type: String, required : true },
+    isRestaurantReview: Boolean,
+    isFoodReview:Boolean,
     photos: [
      {
          type:mongoose.Types.ObjectId,

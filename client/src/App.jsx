@@ -16,11 +16,13 @@ import OrderOnline from './page/Restaurant/OrderOnline';
 import Reviews from './page/Restaurant/Reviews';
 import Menu from './page/Restaurant/Menu';
 import Photos from './page/Restaurant/Photos';
+import axios from 'axios';
 
-
-
-
-
+// axios global settings
+if(localStorage.zomatoUser) { 
+  const {token}=JSON.parse(localStorage.zomatoUser);
+  axios.defaults.headers.common['Authorization'] =`Bearer ${token}`;
+}
 
 
 

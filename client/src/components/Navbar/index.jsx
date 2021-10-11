@@ -102,7 +102,7 @@ const Navbar = () => {
         <MobileNav SignIn={OpenSignInModal} SignUp={OpenSignUpModal}/>
         <LargeNav SignIn={OpenSignInModal} SignUp={OpenSignUpModal} />
       </nav>
-    </>
+    </>  
   );
 };   
 

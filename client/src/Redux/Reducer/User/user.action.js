@@ -1,7 +1,7 @@
 import axios from "axios";
 
 //Redux Types
-import {GET_USER,AUTH_USER} from "./user.type"
+import {GET_USER,SELF} from "./user.type"
 
 
 
@@ -13,7 +13,7 @@ try {
     
     
     });
-    return dispatch({payload:User.data});
+    return dispatch({type:GET_USER, payload:User.data});
     
 } catch (error) {
     return dispatch({type:"ERROR",payload:error});
@@ -28,8 +28,9 @@ export const getMyself=()=> async(dispatch)=>{
         
         
         });
-        return dispatch({type:GET_USER,payload:User.data});
-        
+
+
+        return dispatch({type:SELF,payload:User.data});    
     } catch (error) {
         return dispatch({type:"ERROR",payload:error});
         

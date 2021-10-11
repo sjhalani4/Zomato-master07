@@ -1,13 +1,36 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment} from 'react'
 import {FcGoogle} from 'react-icons/fc'
+import { useDispatch } from 'react-redux';
+import { signUp } from '../../Redux/Reducer/Auth/Auth.action';
+
 
 export default function SignUp({isOpen,setIsOpen}) {
-  
+  const [userData,setUserData]=useState({
+    email:"",
+    password:"",
+    fullname:""
+  });
+
+        const dispatch = useDispatch();
+
+  const handleChange =(e)=> setUserData(prev=>({...prev,[e.target.id]:e.target.value}));
 
   function closeModal() {
     setIsOpen(false)
   }
+
+  const submit = ()=>{
+    setUserData({
+      email:"",
+      password:"",
+      fullname:""
+    });
+  }
+  
+  dispatch(signUp(userData));
+
+ 
 
   
   return (
@@ -64,6 +87,8 @@ export default function SignUp({isOpen,setIsOpen}) {
                     <div className="w-full flex flex-col gap-2">
                         <label htmlFor="fullname">Fullname</label>
                         <input type="text"
+                        onChange={handleChange}
+                        value = {userData.fullname}
                          placeholder="John Doe"
                           id="fullname"
                           className="w-full border border-gray-400 px-3 py-2 rounded-lg focus:outline-none focus:border-zomato-400" 
@@ -73,6 +98,8 @@ export default function SignUp({isOpen,setIsOpen}) {
                         <label htmlFor="email">Email</label>
                         <input type="email"
                          placeholder="email@email.com"
+                         onChange={handleChange}
+                         value = {userData.email}
                           id="email"
                           className="w-full border border-gray-400 px-3 py-2 rounded-lg focus:outline-none focus:border-zomato-400" 
                           />
@@ -80,12 +107,15 @@ export default function SignUp({isOpen,setIsOpen}) {
                     <div className="w-full flex flex-col gap-2">
                         <label htmlFor="password">Password</label>
                         <input type="password"
+                        onChange={handleChange}
+                        value = {userData.password}
+
                          placeholder="*****"
                           id="password"
                           className="w-full border border-gray-400 px-3 py-2 rounded-lg focus:outline-none focus:border-zomato-400" 
                           />
                     </div>
-                    <div className="w-full bg-zomato-400 text-center text-white py-2 rounded-lg ">
+                    <div onClick={submit} className="w-full bg-zomato-400 text-center text-white py-2 rounded-lg ">
                         sign Up
                     </div>
 

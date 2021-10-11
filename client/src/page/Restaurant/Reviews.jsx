@@ -1,14 +1,28 @@
-import React,{useState} from 'react'
-import AddReviewCard from '../../components/restaurant/Reviews/AddReviewCard';
+import React,{useState,useEffect} from 'react'
+import { useSelector, useDispatch } from 'react-redux';
 
+//components
+import AddReviewCard from '../../components/restaurant/Reviews/AddReviewCard';
 import ReviewCard from '../../components/restaurant/Reviews/ReviewCard';
+import { getReviews } from '../../Redux/Reducer/Reviews/reviews.action';
 
 
 
 
 
 const Reviews = () => {
-    const [reviews,setReviews] = useState(["", "",""]);
+    const [reviews,setReviews] = useState([]);
+
+    const reduxState = useSelector(
+        (globalStore)=> globalStore.restaurant.selectedRestaurant.restaurant
+      );
+         const dispatch = useDispatch(); 
+    useEffect(() => {
+        if(reduxState){
+         
+         dispatch(getReviews(reduxState?._id)).then((data)=> setReviews(data.payload.reviews))
+        }
+         }, []);
     return (
         <>
         <div className="w-full flex flex-col md:flex-row relative">

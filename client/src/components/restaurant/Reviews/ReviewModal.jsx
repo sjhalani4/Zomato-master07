@@ -1,20 +1,61 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { Fragment } from 'react'
+import { Fragment,useState } from 'react'
 import Rating from 'react-rating-stars-component';
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router';
+
+//redux action
+import { postReviews } from '../../../Redux/Reducer/Reviews/reviews.action';
 
 export default function ReviewModal({
     isOpen, 
     setIsOpen, 
-    handleRating,
     ...props}) {
+      const [reviewData, setReviewData] = useState({
+         subject:"",
+         reviewText:"",
+         isRestaurantReview:false,
+         isFoodReview:false,
+         rating:0,
+        });
+
+        const {id}=useParams();
+        const dispatch = useDispatch();
+      const handlechange = (e)=> setReviewData(prev => ({...prev,[e.target.id]:e.target.value}));
   
 
   function closeModal() {
     setIsOpen(false)
   }
+  const handleRating = (rating)=>
+  setReviewData((prev)=>({...prev,rating}));
 
+  const toggleDining = ()=>setReviewData(prev=>({
+    ...prev,
+    isRestaurantReview:!reviewData.isRestaurantReview,
+    isFoodReview:false,
+  }));
+  const toggleDelivery = ()=>setReviewData(prev=>({
+    ...prev,
+    isRestaurantReview:false,
+    isFoodReview:!reviewData.isFoodReview,
+  }));
  
-
+const submit =()=>{
+dispatch(
+  postReviews({
+  ...reviewData, restaurant: id,
+})
+);
+setReviewData({
+         subject:"",
+         reviewText:"",
+         isRestaurantReview:false,
+         isFoodReview:false,
+         rating:0,
+}); 
+ closeModal();
+};
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -63,23 +104,46 @@ export default function ReviewModal({
                 <div className="flex gap-2" >
                 
               <div className="flex items-center gap-2">
-                  <input type="radio" name="review" id="dining" />
+                  <input
+                   type="radio" 
+                   name="review" 
+                   id="dining" 
+                   checked={reviewData.isRestaurantReview}
+                  onChange={toggleDining} />
                   <label htmlFor="dining">Dining</label>
               </div>
               <div className="flex items-center gap-2">
-                  <input type="radio" name="review" id="delivery"/>
+                  <input
+                   type="radio" 
+                   name="review" 
+                   id="delivery" 
+                   checked={reviewData.isFoodReview}
+                  onChange={toggleDelivery}/>
                   <label htmlFor="delivery">Delivery</label>
               </div>
               </div>
-              <Rating count={5}  onChange={handleRating} size={24} />
+              <Rating count={5}
+                onChange={handleRating}
+                 size={24}
+                 value={reviewData.rating} />
               <form className="flex flex-col gap-4" >
                   <div className="w-full flex flex-col gap-2">
                       <label htmlFor="subject" >Subject</label>
-                      <input type="text" placeholder="Amazing food" id="subject" className="w-full px-3 py-2 rounded-lg border border-gray-400 focus:outline-none focus:border-zomato-400" />
+                      <input type="text"
+                      placeholder="Amazing food" 
+                      id="subject" 
+                      value={reviewData.subject}
+                      onChange={handlechange}
+                      className="w-full px-3 py-2 rounded-lg border border-gray-400 focus:outline-none focus:border-zomato-400" />
                   </div>
                   <div className="w-full flex flex-col gap-2">
                       <label htmlFor="reviewText" >Review Text</label>
-                      <textarea  placeholder="Amazing food" rows="5" id="reviewText" className="w-full px-3 py-2 rounded-lg border border-gray-400 focus:outline-none focus:border-zomato-400" ></textarea>
+                      <textarea  placeholder="Amazing food" 
+                      rows="5" 
+                      id="reviewText" 
+                      value={reviewData.reviewText}
+                      onChange={handlechange}
+                      className="w-full px-3 py-2 rounded-lg border border-gray-400 focus:outline-none focus:border-zomato-400" ></textarea>
                   </div>
               </form>
           
@@ -90,7 +154,7 @@ export default function ReviewModal({
                   <button
                     type="button"
                     className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                    onClick={closeModal}
+                    onClick={submit}
                   >
                     Submit
                   </button>

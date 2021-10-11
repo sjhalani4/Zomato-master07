@@ -1,22 +1,19 @@
-import { GET_USER,SELF } from "./user.type"
+import { SIGN_IN,SIGN_UP } from "./Auth.type"
 
 
 
 const INTITIAL_STATE= {
-    user: {},
-};
-const UserReducer = (state=INTITIAL_STATE, action)=>{
+    user:{},
+}
+const AuthReducer = (state=INTITIAL_STATE, action)=>{
     switch (action.type){
-        case GET_USER:
+        case SIGN_IN:
             return{
                 ...state,
             };
-            
-            case SELF:
+            case SIGN_UP:
             return{
                 ...state,
-                user: action.payload,
-                
             };
             default:
                 return{
@@ -25,4 +22,4 @@ const UserReducer = (state=INTITIAL_STATE, action)=>{
                 
     }
 } ;
-export default UserReducer;
+export default AuthReducer;

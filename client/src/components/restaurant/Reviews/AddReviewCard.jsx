@@ -3,8 +3,13 @@ import React,{useState} from 'react'
 import ReviewModal from './ReviewModal';
 
 const AddReviewCard = () => {
-    const [isOpen, setIsOpen] = useState(false)
-    const OpenModal=()=>setIsOpen(true);
+    const [isOpen, setIsOpen] = useState(false);
+    const OpenModal=()=>{
+        if(!localStorage.zomatoUser){
+            return alert("Please, Sign in to post a review!");
+        }
+        setIsOpen(true);
+    };
     
     return (
         
