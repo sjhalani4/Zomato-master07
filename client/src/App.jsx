@@ -17,6 +17,7 @@ import Reviews from './page/Restaurant/Reviews';
 import Menu from './page/Restaurant/Menu';
 import Photos from './page/Restaurant/Photos';
 import axios from 'axios';
+import GoogleAuth from './page/GoogleAuth';
 
 // axios global settings
 if(localStorage.zomatoUser) { 
@@ -40,11 +41,12 @@ function App() {
   
   {/* <HomeLayoutHOC path="/" exact component = {Temp}/> */}
   <HomeLayoutHOC path="/:type" exact component = {Home}/>
-  <RestaurantLayoutHOC path="/restaurant/:id/overview" exact component = {Overview}/>
-  <RestaurantLayoutHOC path="/restaurant/:id/order-online" exact component = {OrderOnline}/>
-  <RestaurantLayoutHOC path="/restaurant/:id/reviews" exact component = {Reviews}/>
-  <RestaurantLayoutHOC path="/restaurant/:id/menu" exact component = {Menu}/>
-  <RestaurantLayoutHOC path="/restaurant/:id/photos" exact component = {Photos}/>
+  <HomeLayoutHOC path="/google/:token" exact component = {GoogleAuth}/>
+    <RestaurantLayoutHOC path="/restaurant/:id/overview" exact component = {Overview}/>
+    <RestaurantLayoutHOC path="/restaurant/:id/order-online" exact component = {OrderOnline}/>
+    <RestaurantLayoutHOC path="/restaurant/:id/reviews" exact component = {Reviews}/>
+    <RestaurantLayoutHOC path="/restaurant/:id/menu" exact component = {Menu}/>
+    <RestaurantLayoutHOC path="/restaurant/:id/photos" exact component = {Photos}/>
 
 
 
