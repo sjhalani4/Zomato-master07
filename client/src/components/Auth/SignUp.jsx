@@ -1,5 +1,5 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { Fragment} from 'react'
+import { Fragment,useState} from 'react'
 import {FcGoogle} from 'react-icons/fc'
 import { useDispatch } from 'react-redux';
 import { signUp } from '../../Redux/Reducer/Auth/Auth.action';

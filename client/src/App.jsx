@@ -1,7 +1,6 @@
 //Redirect
 import {Route, Redirect} from 'react-router-dom'; 
-
-
+import { useDispatch } from 'react-redux';
 //HOC
 import HomeLayoutHOC from "./HOC/Home.Hoc";
 import RestaurantLayoutHOC from './HOC/Restaurant.HOC';
@@ -9,6 +8,7 @@ import RestaurantLayoutHOC from './HOC/Restaurant.HOC';
 // import Temp from "./components/temp";
 import Overview from './page/Restaurant/Overview';
 import RedirectRestaurant from './page/Restaurant/Redirect';
+import React,{useEffect} from 'react';
 
 //page 
 import Home from './page/Home'
@@ -18,6 +18,10 @@ import Menu from './page/Restaurant/Menu';
 import Photos from './page/Restaurant/Photos';
 import axios from 'axios';
 import GoogleAuth from './page/GoogleAuth';
+
+//redux action
+import { getMyself } from './Redux/Reducer/User/user.action';
+
 
 // axios global settings
 if(localStorage.zomatoUser) { 
@@ -29,7 +33,12 @@ if(localStorage.zomatoUser) {
 
 
 function App() {
-  return (<>
+  const dispatch = useDispatch();
+useEffect(()=>{
+if(localStorage.zomatoUser)
+dispatch(getMyself());
+  },[]);
+  return (<> 
   
   <Route path="/" exact >
     <Redirect to ='/delivery'/>

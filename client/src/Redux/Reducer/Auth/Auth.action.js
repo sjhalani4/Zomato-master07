@@ -31,9 +31,16 @@ try {
 };
 export const googleAuth=(token)=> async(dispatch)=>{
     try {
+        const User = await axios({
+                        method:"POST",
+                        url:`http://localhost:4000/auth/google`,                         /* POST error solved */
+                        data:{credentials:token },
+                    
+                    
+                    });
        
         localStorage.setItem("zomatoUser",
-        JSON.stringify({token:User.data.token})
+       JSON.stringify({token:User.data.token})
         );
 
         getMyself();
