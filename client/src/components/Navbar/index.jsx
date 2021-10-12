@@ -4,15 +4,22 @@ import { FaUserAlt } from "react-icons/fa";
 import { HiLocationMarker } from "react-icons/hi";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 import { RiSearch2Line } from "react-icons/ri";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import gravatar from "gravatar";
 //components
 import SignIn from "../Auth/SignIn";
 import SignUp from "../Auth/SignUp";
 
+//redux actions
+import { signOut } from "../../Redux/Reducer/Auth/Auth.action";
+
+
 const MobileNav = ({SignIn,SignUp}) => {
   const [isDropdownOpen,setIsDropdownOpen]= useState(false);
+  const dispatch = useDispatch();
+
   const reduxState = useSelector((global)=> global.user.user);
+  const signOutHandler =()=> dispatch(signOut());
   return (
     <div className="flex w-full items-center justify-between lg:hidden">
       <div className="w-28">
@@ -38,7 +45,7 @@ const MobileNav = ({SignIn,SignUp}) => {
         {
               isDropdownOpen && (
               <div className="absolute w-full -bottom-20 py-3 -right-4 bg-white z-10 flex flex-col gap-2 shadow-lg"> 
-              <button  >Sign Out</button>
+              <button onClick={signOutHandler}  >Sign Out</button>
               </div>
 
               )}
@@ -70,7 +77,11 @@ const MobileNav = ({SignIn,SignUp}) => {
 
 const LargeNav = ({ SignIn , SignUp }) => {
   const [isDropdownOpen,setIsDropdownOpen]= useState(false);
+const dispatch =useDispatch();
 const reduxState = useSelector((global)=> global.user.user);
+const signOutHandler =()=> dispatch(signOut());
+
+
 
   return (
     <>
@@ -113,7 +124,7 @@ const reduxState = useSelector((global)=> global.user.user);
           {/* <FaUserAlt /> */}
         </div>
               {isDropdownOpen&& (<div className="absolute w-full -bottom-20 py-3 -right-4 bg-white z-10 flex flex-col gap-2 shadow-lg"> 
-              <button  >Sign Out</button>
+              <button onClick={signOutHandler} >Sign Out</button>
               </div>
               )}
           </div> 
