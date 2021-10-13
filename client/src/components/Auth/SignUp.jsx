@@ -30,7 +30,7 @@ export default function SignUp({isOpen,setIsOpen}) {
   };
  
   const googlesignup=()=> 
-  (window.location.href="http://localhost:4000/auth/gppgle");
+  (window.location.href="http://localhost:4000/auth/google");
     
   
   return (

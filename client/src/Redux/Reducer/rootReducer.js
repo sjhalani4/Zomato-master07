@@ -5,7 +5,8 @@ import image from '../Reducer/Image/Image.reducer';
 import reviews from "./Reviews/reviews.reducer";
 import user from "./User/user.reducer";
 import food from "./Food/Food.reducer";
-const rootReducer = combineReducers({restaurant,image,reviews,user,food});
+import cart from "./Cart/Cart.reducer";
+const rootReducer = combineReducers({restaurant,image,reviews,user,food,cart});
 
 
-export default rootReducer;
+export default rootReducer;  
