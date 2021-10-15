@@ -83,7 +83,7 @@ export const IncQty = (foodID) => async (dispatch) => {
             quantity: food.quantity + 1,
             totalPrice: food.price * (food.quantity + 1),
           }
-        : food
+        : food 
     );
 
     localStorage.setItem("zomatoCart", JSON.stringify({ cart: cartData.cart }));
