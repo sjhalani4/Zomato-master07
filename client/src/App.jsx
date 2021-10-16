@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 //HOC
 import HomeLayoutHOC from "./HOC/Home.Hoc";
 import RestaurantLayoutHOC from './HOC/Restaurant.HOC';
+import CheckoutLayoutHOC from "./HOC/Checkout.Hoc";
 //components
 // import Temp from "./components/temp";
 import Overview from './page/Restaurant/Overview';
@@ -18,6 +19,7 @@ import Menu from './page/Restaurant/Menu';
 import Photos from './page/Restaurant/Photos';
 import axios from 'axios';
 import GoogleAuth from './page/GoogleAuth';
+import Checkout from './page/Checkout';
 
 //redux action
 import { getMyself } from './Redux/Reducer/User/user.action';
@@ -56,6 +58,7 @@ dispatch(getMyself());
     <RestaurantLayoutHOC path="/restaurant/:id/reviews" exact component = {Reviews}/>
     <RestaurantLayoutHOC path="/restaurant/:id/menu" exact component = {Menu}/>
     <RestaurantLayoutHOC path="/restaurant/:id/photos" exact component = {Photos}/>
+    <CheckoutLayoutHOC path="/checkout/orders" exact component={Checkout} />
 
 
 

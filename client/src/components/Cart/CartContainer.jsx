@@ -2,6 +2,7 @@ import React,{useState,useEffect } from 'react'
 import { IoMdArrowDropdown,IoMdArrowDropup,IoMdArrowDropright } from 'react-icons/io';
 import { IoCloseSharp } from 'react-icons/io5';
 import{useSelector,useDispatch} from "react-redux";
+import { useHistory } from 'react-router';
 //components
 import FoodItem from './FoodItem';
 
@@ -11,6 +12,9 @@ import {getCart} from "../../Redux/Reducer/Cart/Cart.action";
 
 const CartSM = ({toggle}) => {
     const  reduxstate = useSelector((global)=>global.cart.cart);
+    const history = useHistory();
+
+    const continueToCheckout = ()=> history.push("/checkout/orders");
 return (<>
     <div className="md:hidden flex items-center justify-between">
     
@@ -24,7 +28,9 @@ return (<>
                     {reduxstate.reduce((acc,curVal)=> acc+curVal.totalPrice,0)} <sub>(plus tax)</sub>
                </h4>
                </div>
-               <button className="flex items-center gap-1 px-3 py-1 rounded-lg text-white bg-zomato-400">
+               <button 
+               onClick={continueToCheckout}
+               className="flex items-center gap-1 px-3 py-1 rounded-lg text-white bg-zomato-400">
                    Continue <IoMdArrowDropright/>
                </button>
             </div> 
@@ -35,6 +41,9 @@ return (<>
 };
 const CartLG = ({toggle}) => {
     const  reduxstate = useSelector((global)=>global.cart.cart);
+    const history = useHistory();
+
+    const continueToCheckout = ()=> history.push("/checkout/orders");
     return (<>
         <div className="hidden md:flex items-center justify-between container px-20 mx-auto">
         
@@ -51,7 +60,8 @@ const CartLG = ({toggle}) => {
                   <h4 className="text-xl ">
                        Subtotal: ₹{reduxstate.reduce((acc,curVal)=> acc+curVal.totalPrice,0)}
                    </h4>
-                  <button className="flex items-center text-lg font-light h-10 gap-1 px-3 py-1 rounded-lg text-white bg-zomato-400">
+                  <button onClick={continueToCheckout}
+                   className="flex items-center text-lg font-light h-10 gap-1 px-3 py-1 rounded-lg text-white bg-zomato-400">
                        Continue <IoMdArrowDropright/>
                    </button>
                   </div>
